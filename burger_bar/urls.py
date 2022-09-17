@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from booking.views import get_booking_form
+from booking.views import get_bookings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', get_booking_form, name='get_booking_form')
+    path('', get_bookings, name='get_booking_form')
 ]
