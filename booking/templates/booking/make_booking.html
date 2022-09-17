@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <title>Book a Table</title>
+</head>
+
+<body>
+  <h1>Make a Booking</h1>
+
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12 m6 l3">
+          <input id="first_name" name="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s12 m6 l3">
+          <input id="last_name" name="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m6 l3">
+          <input id="email_address" name="email_address" type="email" class="validate">
+          <label for="email_address">Email Address</label>
+        </div>
+        <div class="input-field col s12 m6 l3">
+          <input id="phone_number" name="phone_number" type="number" class="validate">
+          <label for="phone_number">Phone Number</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m6 l3">
+          <input id="date_of_booking" name="date_of_booking" type="text" class="validate datepicker">
+          <label for="date_of_booking">Date of Booking</label> <!-- add Materialize js-->
+        </div>
+        <div class="input-field col s12 m6 l3">
+          <input id="time_of_booking" name="time_of_booking" type="text" class="validate timepicker">
+          <label for="time_of_booking">Time of Booking</label>
+        </div>
+        <div class="input-field col s12 m6 l3">
+          <input id="number_of_people name="number_of_people" type="number" class="validate">
+          <label for="time_of_booking">Number of People</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m6 l3">
+          <input id="special_requests" name="special_requests" type="text" class="validate textarea">
+          <label for="date_of_booking">Special Requests</label> <!-- add Materialize js-->
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>

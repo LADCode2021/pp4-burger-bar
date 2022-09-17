@@ -10,3 +10,8 @@ def get_bookings(request):
         'bookings': bookings
     }
     return render(request, 'booking/bookings.html', context)
+
+
+def make_booking(request):
+    return render(request, 'booking/make_booking.html')
+
