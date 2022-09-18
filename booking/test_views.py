@@ -60,3 +60,31 @@ class TestViews(TestCase):
         self.assertRedirects(response, '/')
         existing_items = Booking.objects.filter(id=booking.id)
         self.assertEqual(len(existing_items), 0)
+    
+    # def test_can_edit_booking(self):
+        # booking = Booking.objects.create(
+            # first_name='Test',
+            # last_name='Test',
+            # email_address='test@test.com',
+            # phone_number=int('07554433072'),
+            # date_of_booking='2023-01-01',
+            # time_of_booking='06:35',
+            # number_of_people=int('5'),
+            # special_requests='test'
+            # )
+        
+        # updated_data = [
+            # {'first_name': 'Test'},
+            # {'last_name': 'Test'},
+            # {'email_address': 'test@test.com'},
+            # {'phone_number': int('07554433072')},
+            # {'date_of_booking': '2023-01-01'},
+            # {'time_of_booking': '06:35'},
+            # {'number_of_people': int('5')},
+            # {'special_requests': 'test'}
+        # ]
+        # response = self.client.post('/make', updated_booking)
+        # self.assertRedirects(response, '/')
+        # updated_booking = Booking.objects.get(id=booking_id)
+        # self.assertEqual(updated_booking.first_name, '')
+
