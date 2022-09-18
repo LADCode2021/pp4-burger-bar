@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 import dj_database_url
 
@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9v7!5wixw!(pniefsjvcj@%z2*aa=lqnbm35+ygbnz^-#qh3#z'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-9v7!5wixw!(pniefsjvcj@%z2*aa=lqnbm35+ygbnz^-#qh3#z')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pp4-burger-bar.herokuapp.com']
+ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
 
 # Application definition
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'burger_bar.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://pictttcuvnqluc:afab797897d1545a13e3d053d84379cbac11b048b5a3ae50ef32ec8b56df0313@ec2-34-248-169-69.eu-west-1.compute.amazonaws.com:5432/ddlq3rr3eg4dla')
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
