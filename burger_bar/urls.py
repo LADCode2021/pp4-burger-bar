@@ -19,6 +19,6 @@ from booking.views import get_bookings, make_booking
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', get_bookings, name='get_booking_form'),
-    path('make_booking', make_booking, name='make_booking')
+    path('', get_bookings, name='get_bookings'),
+    path('make', make_booking, name='make')
 ]
