@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
-    <link rel="stylesheet" href="assets/js/" type="text/javascript">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'js/script.js' %}" type="text/javascript">
     <title>Burger Restaurant</title>
 </head>
 
@@ -31,9 +33,9 @@
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">Menu</a>
-                    <a class="nav-item nav-link" href="#">Book a Table</a>
+                    <a class="nav-item nav-link active" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="{% url 'make' %}">Book a Table</a>
+                    <a class="nav-item nav-link" href="{% url 'contact' %}">Book a Table</a>
                 </div>
             </div>
         </nav>

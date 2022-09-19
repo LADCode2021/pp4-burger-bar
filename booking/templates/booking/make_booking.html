@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <title>Make a Booking</title>
-</head>
-
-<body>
+{% block content %}
   <h1>Make a Booking</h1>
   <!-- <div class="row">
     <form method="POST" action="make">
@@ -66,9 +57,4 @@
         </p>
     </div>
 </form>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
-
-</html>
+{%endblock%}

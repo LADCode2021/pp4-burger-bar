@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Booking
-from .forms import BookingForm
+from .forms import BookingForm, ContactForm
 
 # Create your views here.
+
+def get_home(request):
+    return render(request, 'booking/index.html')
 
 
 def get_bookings(request):
@@ -11,6 +14,22 @@ def get_bookings(request):
         'bookings': bookings
     }
     return render(request, 'booking/bookings.html', context)
+
+def get_contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print('form saved')
+            return redirect(get_contact)
+        else:
+            print('form is invalid')
+    
+    form = ContactForm()
+    context = {
+        'form': form
+        }
+    return render(request, 'booking/contact.html', context)
 
 
 def make_booking(request):

@@ -19,7 +19,9 @@ from booking import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.get_bookings, name='get_bookings'),
+    path('', views.get_home, name='home'),
+    path('bookings', views.get_bookings, name='get_bookings'),
+    path('contact', views.get_contact, name='contact'),
     path('make', views.make_booking, name='make'),
     path('edit/<booking_id>', views.edit_booking, name='edit'),
     path('delete/<booking_id>', views.delete_booking, name='delete')

@@ -1,6 +1,6 @@
 /* Header styling */
 .jumbotron {
-    background-image: url('../images/burger-banner.jpg');
+    background-image: url('../img/burger-banner.jpg');
     /* image credit: https://www.pexels.com/photo/hamburger-and-fries-photo-2983101/ */
     background-size: cover;
     background-position: 100% 50%;
