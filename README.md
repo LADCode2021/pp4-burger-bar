@@ -1,108 +1,222 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# PP4 - Burger Bar (Booking app)
 
-Welcome LADCode2021,
+Booking is an app designed to make booking a table, changing a book and cancelling a booking at a burger bar easier and more intuitive. The inspiration is taken from a local burger restaurant who on their website asks guests to message them on Whatsapp to book a table. They then manually reply to confirm if they have a table at that time and date. If the guest needs to change their booking, add more people to their booking, add special requests or cancel their booking, then again they have to get in contact via WhatsApp and wait for a manual reply.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Booking achieves the project goal by providing booking page based on principles of design thinking. I empathised with the user by putting myself in their position and anticipated what I think could improve the booking process. I asked myself what would could the site do that would improve the booking process and encourage users to return to the site and therefore the burger bar. I then examined what I would want to see to make me book and return to book again. This process formed my problem statement: "How do I develop a booking application that provides this functionality to the user?"
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
 
-## Gitpod Reminders
+In terms of functionality users can make a booking (create element of CRUD), see their booking (read element of CRUD), edit their booking (update element of CRUD) or cancel a booking (delete element of CRUD). They must create/login into an account as initial authorisation step for defensive programming reasons and for GDPR reasons so only that person can access their bookings. The app is deployed on Heroku and uses postgresql as its backend database. Other frameworks and packages were used to deliver this app and are detailed towards the end.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+[The live project can be viewed here.](https://pp4-burger-bar.herokuapp.com/)
 
-`python3 -m http.server`
+![](docs/images/ismysiteresponsive_screenshot.png)
 
-A blue button should appear to click: _Make Public_,
+# Planning
 
-Another blue button should appear to click: _Open Browser_.
+Following my empathise, questions and examine initial step I started mapping out what I felt was the minimum viable product in agile methodology out the requirements I'd identified in a flow diagram using [Lucid Charts](https://www.lucidchart.com/pages/). This allowed me to fully scope what I needed the tool to do and was useful to refer back to, to ensure I was staying on track with the intended minimum outputs for the project.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+Please see my original plan below:
 
-A blue button should appear to click: _Make Public_,
+![](docs/images/lucid-planning-diagram.jpeg)
 
-Another blue button should appear to click: _Open Browser_.
+I then created a GitHub repository for my app and created a project. Once I'd created the project I setup user stories using automation which automatically added via a template user stories I created to my todo list in the project. I did this so I could track the progress of the functionality I had identified was required for this app.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+Please see my initial user stories:
 
-To log into the Heroku toolbelt CLI:
+![](docs/images/github-projects-todo-list.png)
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+I largely stuck to the plan except I decided to update the worksheet all in one API call as the final task, rather than on two separate calls to updated sales first and then the pay calculations later. I read that it is best served to have as few API calls as possible in an application to keep loading/run-time as quick as possible.
 
-------
+Upon failing the initial submission of this project I then added new functionality. The assessor felt that if the user cannot access data in the Googlesheet and if they have to access the Googlesheet to obtain dealer id's then it renders the calculator less useful than just using the Googlesheet. To address this feedback I added functionality to allow the user to access previous sales data. I have changed the the programme so it displays a list of dealer id's in the programme before the user has to choose which dealer. The user should now not need to access the Googlesheet directly for any data input or retrieval.
 
-## Release History
+# How to use Pay Calculator
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+There are currently 4 imaginary dealers in the Google Sheet used for this project. The calculator requests a choice on how to use the programme on start.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+1. Enter either 'a' to view previous sales data or 'b' to enter new sales
+    * If 'a' is selected sales data will be displayed and programme will restart
+    * If 'b' is selected move onto 2.
+2. Enter a Dealer_ID from the list provided into the command line prompt, taking note of type of data the tool will accept.
+3. Enter the sales total for that dealer into the command line, again taking note of the type of data the tool will accept.
+4. The programme will automatically restart
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+The outcome of a successful use of the programme will be the command interface showing previous sales data and restarting the programme. Or if the total to pay to the dealer and the total to pay to the house (owner) is displayed and the command line interface confirms data has been added to the Google worksheet and restarts the programme.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+# Features
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+## Existing Features
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+### Google Sheets
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+The data for this programme is stored in dealer_details Google sheet. This can be accessed as read-only [here](https://docs.google.com/spreadsheets/d/1ce3DIRFEajKR9P0evQ10GI1JoCKMAHC_XtExZa5ZjZQ/edit?usp=sharing). There are two tabs, 'dealer' which stores the Dealer_ID and corresponding Dealer_Name which is used in the programme to give a name to an ID for the user. This is so the user has a way to double check they are inputting data for the right person. I chose to do this with an integer ID over just using the name of the dealer as there are better data validation controls with integers. I felt there were too many risks to trying to validate a string. To make this work work I had to import gspread library and Google auth which allowed me to interact directly with Google Sheets.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+![](docs/images/dealer-tab.png)
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+Then there is the 'pay' tab which stores all the outputs from the calculator: 'Dealer_ID', 'Dealer_Name', 'Total_to_pay_dealer', 'Total_to_pay_house' and 'Date_entered. This data is accessible in the programme if the user chooses to view previous sales data by selecting option a.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+![](docs/images/pay-tab.png)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## Command Line Programme
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+### Welcome message and User Choice Input
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+When the programme runs in Heroku a welcome message appears and asks the user to choose between a. viewing previous sales data for a dealer or to input new sales data for a dealer.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+![](docs/images/welcome-screenshot.png)
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### User Choice Validation
 
-------
+Once the user has entered a choice the programme validates whether it is a valid choice and either displays 'Valid choice' to the terminal or displays a value error and asks the user to try again.
 
-## FAQ about the uptime script
+![](docs/images/incorrect-user-choice.png)
 
-**Why have you added this script?**
+### User Input for Dealer ID
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+Once a valid user choice has been made the programme requests a dealer ID from a list of dealers which is pulled from the Googlesheet and displayed in the terminal.
 
-**How will this affect me?**
+![](docs/images/dealer-id-input.png)
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+### Data Validation on Dealer ID User Input
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+Once the user enters a value into the command line there is some data validation to check that the input is an integer and that it matches a Dealer ID in the dealer worksheet.
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+If the data is invalid then an error message is printed to the terminal either for invalid integer or incorrect Dealer ID. For example, here is the error message that appears for incorrect Dealer ID:
 
-**So….?**
+![](docs/images/incorrect-dealer-id.png)
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+As you can see the function to request a Dealer ID has re-appeared below the error message. This is setup up to keep running until there is a correct input from the user.
 
-**Can I opt out?**
+### Display Previous Sales Data
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+If the user chose option a to view previous sales data and entered a valid dealer id the programme will tell the user the id was valid and display previous data if it exists in the Googlesheet and restart the programme:
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+![](docs/images/previous-sales-data-exists.png)
 
-**Anything more?**
+If no previous data exists the programme will tell the user there is no previous data for that dealer and restart the tool:
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+![](docs/images/no-previous-sales-data.png)
 
----
+### User Input for Sales Data
 
-Happy coding!
+If the user chose option b and enters a valid dealer id the programme tells the user it's a valid ID; pulls in the name of dealer from the dealer_details dealer worksheet in the Google sheet and requests sales data input from the user.
+
+![](docs/images/enter-sales-data.png)
+
+### Sales Data Validation
+
+Once the user enters sales data into the input it validates whether the value entered is an integer or a float. If either of these validations are incorrect an error message is printed to the terminal and as with the Dealer ID input the sales data input function will continue to run until it passes validation. For example if the user enters text value by mistake:
+
+![](docs/images/incorrect-sales-data.png)
+
+### Calculating Dealer Pay, House Pay and Updating Worksheet
+
+Once the user enters correct sales data the Sales Data Input stops running and the programme uses the user input to: 
+
+* confirm sales data is valid
+* calculate how much to pay the dealer
+* print the amount to pay the dealer to the terminal
+* calculate how much to pay the house
+* print the amount to pay the house to the terminal
+* print what is being updated in the dealer_details pay worksheet
+* updates the worksheet
+* print a confirmation of what data was added to the spreadsheet
+* restarts the programme
+
+![](docs/images/valid-sales-data.png)
+
+## Future Features
+
+* The ability to delete data from the pay worksheet
+* The ability to remove or add new dealers
+* The ability to enter more than one user ID and sales data at a time
+
+# Data Models
+I decided to use Google Sheets as my data model rather than storing data in data model classes. I felt this was more realistic for my imagined purpose as the imagined user is not a programmer. There is possibility with future development that I could take data from the Google Sheet and store that in classes. I would use this especially to be able to develop the functionality for multiple Dealer ID's and sales inputs.
+
+I have used other objects as temporary data storage such as a dictionary to store the dealer name in a function. This dictionary is then used in the function to access dealer names across multiple functions.
+
+I have also used pandas to create a dataframe to access and manipulated data when pulling previous sales data from the pay worksheet
+
+# Testing
+
+I have manually tested Pay Calculator in the following ways:
+
+* Pass the code through PEP8 linter and confirmed there are no errors
+* Inputted different types of incorrect data into the input fields, i.e. special characters, strings where there should have been integers, negative numbers in sales data, empty inputs etc. And have confirmed no unexpected error messages.
+* Tested the programme in both my GitPod terminal and Code Institute instance of Heroku and the programme runs exactly as expected.
+
+## Bugs
+
+Solved bugs:
+
+* Float error 1:
+
+In my original function for getting sales data, I hadn't accounted for float values as sales - sales may not always be a integer. I was receiving errors such as:
+
+![](docs/images/float-error.png)
+
+To fix the issue I created a function to check and pass the value if it was a float or an integer and pass an error if it is not:
+
+![](docs/images/sales-data-validation-function.png)
+
+* Float error 2
+
+Once I allowed floats to be passed into the programme, I then had to account for them in the functions that calculate dealer and house pay. I did this by getting the function to run a different sum based on int() and float() methods depending on which value was passed. For example in calculating dealer pay, I used the following:
+
+![](docs/images/dealer-pay-ifs.png)
+
+## Remaining Bugs
+
+* No known bugs outstanding in programme
+
+## Validator Testing
+
+I validated the code in PEP8 and no errors were returned:
+
+![](docs/images/pep8-results.png)
+
+# Deployment
+
+I followed the following steps to deploy Pay Calculator to Code Institute's instance of Heroku:
+
+* Update requirements.txt to include gspread library, Google Auth, pandas and datetime
+* Push requirements.txt to GutHub repository
+* Create new Heroku app
+* Create a config var in app settings for credentials for my Google Sheet
+* Create a config var for PORT 8000 as requested by Code Institute in README.md and lessons
+* Add heroku/python buildpack
+* Add heroku/nodejs buildpack
+* In app deploy tab deploy main branch from GitHub repository manually to check there are no build errors
+* In app deploy deploy main branch to automatic once programme is complete
+
+The programme is live [here](https://pp3-pay-calculator.herokuapp.com/).
+
+# Technologies Used
+
+I used the following technologies:
+
+* Hardware: MacBook Pro
+* GitHub
+* GitPod
+* Google Chrome, Firefox and Safari web browsers
+* Gspread library
+* Datatime python module
+* Pandas dataframe library
+* Heroku
+
+# Credits
+
+* Code Institute for the Heroku deployment terminal
+* Code Institute for the instructions and SCOPE details to wire up Google Sheets and gspread
+* Code Institute for various inspirations in functions as commented in function multiline strings in run.py
+
+
+
+
+
+
+
+
+
+
