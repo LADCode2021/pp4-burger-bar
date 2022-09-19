@@ -15,21 +15,23 @@ def get_bookings(request):
     }
     return render(request, 'booking/bookings.html', context)
 
-def get_contact(request):
+def make_contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
             print('form saved')
-            return redirect(get_contact)
-        else:
-            print('form is invalid')
-    
+            return redirect(get_thank_you)
+
     form = ContactForm()
     context = {
         'form': form
         }
     return render(request, 'booking/contact.html', context)
+
+
+def get_thank_you(request):
+    return render(request, 'booking/contact_thank_you.html')
 
 
 def make_booking(request):
