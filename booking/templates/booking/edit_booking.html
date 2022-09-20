@@ -1,59 +1,45 @@
 {% extends "base.html" %}
 
-  {% block content %}
-  <!-- <div class="row">
-    <form method="POST" action="make">
-      {% csrf_token %}
-      <div class="row">
-        <div class="input-field col s12 m6 l3">
-          <input id="id_first_name" name="first_name" type="text" class="validate">
-          <label for="id_first_name">First Name</label>
+{% block content %}
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-10 col-md-8 col-lg-6">
+      <h1>Make a Booking</h1>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          {{ form.first_name }}
         </div>
-        <div class="input-field col s12 m6 l3">
-          <input id="id_last_name" name="last_name" type="text" class="validate">
-          <label for="id_last_name">Last Name</label>
+        <div class="form-group">
+          {{ form.last_name }}
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12 m6 l3">
-          <input id="id_email_address" name="email_address" type="email" class="validate">
-          <label for="id_email_address">Email Address</label>
+        <div class="form-group">
+          {{ form.email_address }}
         </div>
-        <div class="input-field col s12 m6 l3">
-          <input id="id_phone_number" name="phone_number" type="number" class="validate">
-          <label for="id_phone_number">Phone Number</label>
+        <div class="form-group">
+          {{ form.phone_number }}
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12 m6 l3">
-          <input id="id_date_of_booking" name="date_of_booking" type="date" class="validate datepicker">
-          <label for="id_date_of_booking">Date of Booking</label>
+        <div class="form-group">
+          {{ form.date_of_booking }}
         </div>
-        <div class="input-field col s12 m6 l3">
-          <input id="id_time_of_booking" name="time_of_booking" type="time" class="validate timepicker">
-          <label for="id_time_of_booking">Time of Booking</label>
+        <div class="form-group">
+          {{ form.time_of_booking }}
         </div>
-        <div class="input-field col s12 m6 l3">
-          <input id="id_number_of_people" name="number_of_people" type="number" class="validate">
-          <label for="id_number_of_people">Number of People</label>
+        <div class="form-group">
+          {{ form.number_of_people }}
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12 m6 l3">
-          <input id="id_special_requests" name="special_requests" type="text" class="validate textarea">
-          <label for="id_special_requests">Special Requests</label>
+        <div class="form-group">
+          {{ form.special_requests }}
         </div>
-      </div>
-    </form>
-  </div> -->
-
-  <form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <div>
+      </form>
+      <div>
         <p>
-            <button type="submit">Edit Booking</button>
+          <button type="submit" class="btn btn-primary">Edit Booking</button>
         </p>
+      </div>
     </div>
-</form>
+  </div>
+</div>
+<div>
+
 {%endblock%}
