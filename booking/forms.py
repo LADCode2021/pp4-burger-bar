@@ -1,5 +1,11 @@
 from django import forms
+from django.forms import TextInput, EmailInput, NumberInput, DateInput, TimeInput
 from .models import Booking, Contact
+
+"""
+Widgets adapated from:
+https://medium.com/swlh/how-to-style-your-django-forms-7e8463aae4fa
+"""
 
 class BookingForm(forms.ModelForm):
     class Meta:
@@ -14,6 +20,48 @@ class BookingForm(forms.ModelForm):
             'number_of_people',
             'special_requests'
         ]
+        widgets = {
+            'first_name': TextInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'First Name'
+                }),
+            'last_name': TextInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Last Name'
+                }),
+            'email_address': EmailInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Email Addresss'
+                }),
+            'phone_number': NumberInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Phone Number'
+                }),
+            'date_of_booking': DateInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Date of Booking'
+                }),
+            'time_of_booking': TimeInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Time of Booking'
+                }),
+            'number_of_people': NumberInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Number of People'
+                }),
+            'special_requests': TextInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Special Requests'
+                }), 
+        }
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -25,3 +73,30 @@ class ContactForm(forms.ModelForm):
             'phone_number',
             'comments'
         ]
+        widgets = {
+            'first_name': TextInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'First Name'
+                }),
+            'last_name': TextInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Last Name'
+                }),
+            'email_address': EmailInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Email Addresss'
+                }),
+            'phone_number': NumberInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Phone Number'
+                }),
+            'comments': TextInput(attrs={
+                'class': "form-control",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Comments'
+                }),
+        }
