@@ -41,6 +41,8 @@ def make_booking(request):
             form.save()
             print('form saved')
             return redirect(get_bookings)
+        else:
+            print('broken')
    
     form = BookingForm()
     context = {
