@@ -7,8 +7,10 @@ Datepicker used from:
 https://mrasimzahid.medium.com/how-to-implement-django-datepicker-calender-in-forms-date-field-9e23479b5db
 """
 
+
 class DateInput(forms.DateInput):
     input_type = 'date'
+
 
 # Form class in forms.py
 class DateofBooking(forms.Form):
@@ -17,18 +19,9 @@ class DateofBooking(forms.Form):
     """
     date_of_booking = forms.DateField(widget=DateInput)
 
-class TimeInput(forms.TimeInput):
-    input_type = 'time'
-
-# Form class in forms.py
-class TimeofBooking(forms.Form):
-    """
-    Date of Booking
-    """
-    time_of_booking = forms.TimeField(widget=TimeInput)
 
 """
-Widgets adapated from:
+Some widgets adapated from:
 https://medium.com/swlh/how-to-style-your-django-forms-7e8463aae4fa
 """
 
@@ -71,7 +64,7 @@ class BookingForm(forms.ModelForm):
                 'style': 'max-width: 300px;',
                 'placeholder': 'Date of Booking'
                 }),
-            'time_of_booking': TimeInput(attrs={
+            'time_of_booking': forms.Select(attrs={
                 'class': "form-control",
                 'style': 'max-width: 300px;',
                 'placeholder': 'Time of Booking'
