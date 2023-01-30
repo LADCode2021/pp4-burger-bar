@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Booking
 from .forms import BookingForm, ContactForm
+from django.core import validators
 
 # Create your views here.
 
@@ -68,4 +69,5 @@ def delete_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     booking.delete()
     return redirect('get_bookings')
+
 

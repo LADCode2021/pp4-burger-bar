@@ -1,19 +1,26 @@
 from django import forms
 from django.forms import TextInput, EmailInput, NumberInput, DateInput, TimeInput
 from .models import Booking, Contact
-
-"""
-Datepicker used from:
-https://mrasimzahid.medium.com/how-to-implement-django-datepicker-calender-in-forms-date-field-9e23479b5db
-"""
+from django.utils.timezone import now
 
 
 class DateInput(forms.DateInput):
-    input_type = 'date'
+    """
+    Sets date input and disables previous dates
+    Datepicker used from:
+    https://mrasimzahid.medium.com/how-to-implement-django-datepicker-calender-in-forms-date-field-9e23479b5db
+    
+    Disabling previous dates taken from:
+    https://stackoverflow.com/questions/74227268/how-to-make-a-date-picker-that-does-not-select-previous-dates-in-django
+    """
+    input_type = 'date'  
+    def get_context(self, name, value, attrs):
+        attrs.setdefault('min', now().strftime('%Y-%m-%d'))
+        return super().get_context(name, value, attrs)
 
 
-# Form class in forms.py
-class DateofBooking(forms.Form):
+# Simple datepicker class
+class DateOfBooking(forms.Form):
     """
     Date of Booking
     """
