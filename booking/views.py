@@ -2,21 +2,25 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Booking
 from .forms import BookingForm, ContactForm
 from django.core import validators
+from datetime import datetime, timedelta
 
 # Create your views here.
 
 def get_home(request):
     return render(request, 'booking/index.html')
-
+    
 
 def get_bookings(request):
-    bookings = Booking.objects.all()
+    user = request.user
+    bookings = Booking.objects.filter(user=user)
     context = {
+        'user':user,
         'bookings': bookings
     }
     return render(request, 'booking/bookings.html', context)
 
 def make_contact(request):
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -36,6 +40,7 @@ def get_thank_you(request):
 
 
 def make_booking(request):
+
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
@@ -44,7 +49,7 @@ def make_booking(request):
             return redirect(get_bookings)
         else:
             print('broken')
-   
+  
     form = BookingForm()
     context = {
         'form': form
@@ -69,5 +74,4 @@ def delete_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     booking.delete()
     return redirect('get_bookings')
-
 
