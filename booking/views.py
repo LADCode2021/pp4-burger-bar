@@ -63,6 +63,7 @@ def make_booking(request):
         }
     return render(request, 'booking/make_booking.html', context)
 
+@login_required(login_url='accounts/login')
 def edit_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     if request.method == 'POST':
@@ -77,6 +78,7 @@ def edit_booking(request, booking_id):
         }
     return render(request, 'booking/edit_booking.html', context)
 
+@login_required(login_url='accounts/login')
 def delete_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     booking.delete()
