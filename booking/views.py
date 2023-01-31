@@ -24,6 +24,8 @@ def get_bookings(request):
         return render(request, 'booking/bookings.html', context)
     else:
         messages.success(request, "You must be logged in to check your bookings!")
+        return render(request, 'booking/bookings.html')
+   
 
 def make_contact(request):
 
