@@ -23,9 +23,18 @@ def get_bookings(request):
             'bookings': bookings
             }
         return render(request, 'booking/bookings.html', context)
-    else:
-        messages.success(request, "You must be logged in to check your bookings!")
-        return render(request, 'booking/bookings.html')
+
+
+def get_bookings_guest(request):
+
+    if not request.user.is_authenticated:
+        email = request.session.get('email')
+        bookings = Booking.objects.filter(email_address=email)
+        context = {
+            'email': email,
+            'bookings': bookings
+            }
+        return render(request, 'booking/bookings_guest.html', context)
    
 
 def make_contact(request):
@@ -51,11 +60,16 @@ def get_thank_you(request):
 def make_booking(request):
 
     if request.method == 'POST':
+        email = request.POST.get('email_address')
         form = BookingForm(request.POST)
         if form.is_valid():
             form.save()
             print('form saved')
-            return redirect(get_bookings)
+            if request.user.is_authenticated:
+                return redirect(get_bookings)
+            if not request.user.is_authenticated:
+                request.session['email_address'] = email
+                return redirect(get_bookings_guest)
   
     form = BookingForm()
     context = {
