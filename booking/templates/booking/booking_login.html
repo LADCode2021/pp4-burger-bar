@@ -3,7 +3,6 @@
 {% block content %}
 
 {% for booking in bookings %}
-{% if user.is_authenticated %}
 <div class="card text-center">
   <div class="card-header">
   </div>
@@ -20,13 +19,6 @@
   <div class="card-footer text-muted">
   </div>
 </div>
-
-{% else %}
-
-<p>You need to login to view bookings</p>
-
-{% endif %}
-
 {% endfor %}
 
 {% endblock content %}

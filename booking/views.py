@@ -5,13 +5,14 @@ from django.core import validators
 from datetime import datetime, timedelta
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def get_home(request):
     return render(request, 'booking/index.html')
     
-
+@login_required(login_url='accounts/login')
 def get_bookings(request):
 
     if request.user.is_authenticated:
@@ -55,8 +56,6 @@ def make_booking(request):
             form.save()
             print('form saved')
             return redirect(get_bookings)
-        else:
-            print('broken')
   
     form = BookingForm()
     context = {
