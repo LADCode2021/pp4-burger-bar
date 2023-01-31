@@ -3,6 +3,8 @@ from .models import Booking
 from .forms import BookingForm, ContactForm
 from django.core import validators
 from datetime import datetime, timedelta
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 
@@ -11,13 +13,17 @@ def get_home(request):
     
 
 def get_bookings(request):
-    user = request.user
-    bookings = Booking.objects.filter(user=user)
-    context = {
-        'user':user,
-        'bookings': bookings
-    }
-    return render(request, 'booking/bookings.html', context)
+
+    if request.user.is_authenticated:
+        email = request.user.email
+        bookings = Booking.objects.filter(email_address=email)
+        context = {
+            'email': email,
+            'bookings': bookings
+            }
+        return render(request, 'booking/bookings.html', context)
+    else:
+        messages.success(request, "You must be logged in to check your bookings!")
 
 def make_contact(request):
 
