@@ -74,7 +74,7 @@ class Booking(models.Model):
 class Contact(models.Model):
     first_name = models.CharField(max_length=25, null=False, blank=False)
     last_name = models.CharField(max_length=25, null=False, blank=False)
-    email_address = models.EmailField(default="email@email.com")
+    email_address = models.EmailField()
     phone_number = models.IntegerField()
     comments = models.TextField()
 

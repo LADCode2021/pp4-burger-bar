@@ -59,7 +59,7 @@ class BookingForm(forms.ModelForm):
             'email_address': EmailInput(attrs={
                 'class': "form-control",
                 'style': 'max-width: 300px;',
-                'placeholder': 'Email Addresss'
+                'placeholder': 'Email Address'
                 }),
             'phone_number': NumberInput(attrs={
                 'class': "form-control",
@@ -101,27 +101,22 @@ class ContactForm(forms.ModelForm):
         widgets = {
             'first_name': TextInput(attrs={
                 'class': "form-control",
-                'style': 'max-width: 300px;',
                 'placeholder': 'First Name'
                 }),
             'last_name': TextInput(attrs={
                 'class': "form-control",
-                'style': 'max-width: 300px;',
                 'placeholder': 'Last Name'
                 }),
             'email_address': EmailInput(attrs={
                 'class': "form-control",
-                'style': 'max-width: 300px;',
-                'placeholder': 'Email Addresss'
+                'placeholder': 'Email Address'
                 }),
             'phone_number': NumberInput(attrs={
                 'class': "form-control",
-                'style': 'max-width: 300px;',
                 'placeholder': 'Phone Number'
                 }),
             'comments': TextInput(attrs={
                 'class': "form-control",
-                'style': 'max-width: 300px;',
                 'placeholder': 'Comments'
                 }),
         }

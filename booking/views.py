@@ -7,11 +7,23 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 
 def get_home(request):
-    return render(request, 'booking/index.html')
-    
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print('form saved')
+            return redirect(get_thank_you)
+
+    form = ContactForm()
+    context = {
+        'form': form
+        }
+    return render(request, 'booking/index.html', context)
+
+
 @login_required(login_url='accounts/login')
 def get_bookings(request):
 
