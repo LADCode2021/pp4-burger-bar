@@ -80,8 +80,11 @@ def make_booking(request):
             if request.user.is_authenticated:
                 return redirect(get_bookings)
             if not request.user.is_authenticated:
-                request.session['email_address'] = email
-                return redirect(get_bookings_guest)
+                booking = Booking.objects.get(email_address=email)
+                context = {
+                    booking: booking
+                }
+                return render(request, 'booking/bookings_guest.html', context)
   
     form = BookingForm()
     context = {

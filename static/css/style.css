@@ -602,7 +602,12 @@ section {
 /*--------------------------------------------------------------
   # About Section
   --------------------------------------------------------------*/
-.about .about-img {
+
+  #about-img {
+    background-image: url('{% static 'img/about.jpg' %}');
+  }
+
+  .about .about-img {
   min-height: 500px;
 }
 
