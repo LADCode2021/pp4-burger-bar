@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core import validators
+from django.utils import timezone
 import datetime
 
 TIME_CHOICES = (
@@ -59,7 +60,7 @@ class Booking(models.Model):
     last_name = models.CharField(max_length=25, null=False, blank=False)
     email_address = models.EmailField(default="email@email.com")
     phone_number = models.IntegerField()
-    date_of_booking = models.DateField(default=datetime.date.today())
+    date_of_booking = models.DateField(default=timezone.now())
     time_of_booking = models.CharField(
         max_length=10, choices=TIME_CHOICES, default=""
         )
