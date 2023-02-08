@@ -1,0 +1,32 @@
+<header>
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto me-lg-0">
+      <h1>Burger Bar<span>.</span></h1>
+    </a>
+
+    <nav id="navbar navbar-fixed-top" class="navbar">
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav><!-- .navbar -->
+
+    <a id="header-btn" class="btn-book-a-table" href="{% url 'make' %}">Book a Table</a>
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    <nav class="navbar navbar-fixed-top">
+      <ul>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'account_logout' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'account_signup' %}">Register</a></li>
+        <li><a href="{% url 'account_login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>
