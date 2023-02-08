@@ -277,16 +277,6 @@ section {
   }
 }
 
-#header-btn {
-  font-size: 14px;
-  color: #fff;
-  background: var(--color-primary);
-  padding: 8px 20px;
-  margin-left: 30px;
-  border-radius: 50px;
-  transition: 0.3s;
-}
-
 .header.sticked {
   border-color: #fff;
   border-color: #eee;
