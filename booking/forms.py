@@ -1,3 +1,4 @@
+import uuid
 from django import forms
 from django.forms import TextInput, EmailInput, NumberInput, DateInput, TimeInput
 from .models import Booking, Contact
@@ -36,6 +37,7 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = [
+            'id',
             'first_name',
             'last_name',
             'email_address',
@@ -87,6 +89,7 @@ class BookingForm(forms.ModelForm):
                 'placeholder': 'Special Requests'
                 }), 
         }
+
 
 class ContactForm(forms.ModelForm):
     class Meta:

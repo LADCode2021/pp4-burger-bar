@@ -9,15 +9,18 @@
   </div>
   <div class="card-body">
     <h5 class="card-title">Upcoming Booking</h5>
-    <p>{{ booking.first_name }} {{booking.last_name}}</p>
+    {{ booking.first_name }} {{booking.last_name}}
     <p>{{ booking.date_of_booking }} at {{ booking.time_of_booking }}</p>
     <p>This booking is for {{ booking.number_of_people }} people</p>
     <p>Special requests: {{ booking.special_requests }}</p>
+    <a href="/edit/{{ booking.id }}">Edit Booking</a>
+    <a href="/delete/{{ booking.id }}">Delete Booking</a>
     <a href="/make">Make new booking</a>
   </div>
   <div class="card-footer text-muted">
   </div>
 </div>
+
 {% endfor %}
 
 {% endblock content %}

@@ -26,27 +26,23 @@ def get_home(request):
 
 @login_required(login_url='accounts/login')
 def get_bookings(request):
-
-    if request.user.is_authenticated:
-        email = request.user.email
-        bookings = Booking.objects.filter(email_address=email)
-        context = {
-            'email': email,
-            'bookings': bookings
-            }
-        return render(request, 'booking/bookings.html', context)
+    email = request.user.email
+    bookings = Booking.objects.filter(email_address=email)
+    context = {
+        'email': email,
+        'bookings': bookings
+        }
+    return render(request, 'booking/bookings.html', context)
 
 
 def get_bookings_guest(request):
-
-    if not request.user.is_authenticated:
-        email = request.session.get('email')
-        bookings = Booking.objects.filter(email_address=email)
-        context = {
-            'email': email,
-            'bookings': bookings
-            }
-        return render(request, 'booking/bookings_guest.html', context)
+    booking_id = request.POST.get('id')
+    bookings = Booking.objects.filter(id=booking_id)
+    context = {
+        'id': id,
+        'bookings': bookings
+        }
+    return render(request, 'booking/bookings_guest.html', context)
    
 
 def make_contact(request):
@@ -72,7 +68,6 @@ def get_thank_you(request):
 def make_booking(request):
 
     if request.method == 'POST':
-        email = request.POST.get('email_address')
         form = BookingForm(request.POST)
         if form.is_valid():
             form.save()
@@ -80,11 +75,7 @@ def make_booking(request):
             if request.user.is_authenticated:
                 return redirect(get_bookings)
             if not request.user.is_authenticated:
-                booking = Booking.objects.get(email_address=email)
-                context = {
-                    booking: booking
-                }
-                return render(request, 'booking/bookings_guest.html', context)
+                return redirect(get_bookings_guest)
   
     form = BookingForm()
     context = {
