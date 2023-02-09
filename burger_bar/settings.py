@@ -92,6 +92,7 @@ WSGI_APPLICATION = 'burger_bar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
 if development:
     DATABASES = {
         'default': {
