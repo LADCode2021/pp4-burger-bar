@@ -36,14 +36,14 @@ def get_bookings(request):
 
 
 def get_bookings_guest(request):
-    booking_id = request.POST.get('id')
-    bookings = Booking.objects.filter(id=booking_id)
+    guest_id = request.user.id
+    bookings = Booking.objects.filter(guest_id=id)
     context = {
         'id': id,
         'bookings': bookings
         }
     return render(request, 'booking/bookings_guest.html', context)
-   
+
 
 def make_contact(request):
 

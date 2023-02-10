@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'booking',
 ]
 
+ACCOUNT_FORMS = {'login': 'booking.forms.MyCustomLoginForm'}
+
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'

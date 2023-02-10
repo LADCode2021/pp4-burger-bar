@@ -3,6 +3,7 @@ from django import forms
 from django.forms import TextInput, EmailInput, NumberInput, DateInput, TimeInput
 from .models import Booking, Contact
 from django.utils.timezone import now
+from allauth.account.forms import LoginForm
 
 
 class DateInput(forms.DateInput):
@@ -123,3 +124,13 @@ class ContactForm(forms.ModelForm):
                 'placeholder': 'Comments'
                 }),
         }
+
+
+class MyCustomLoginForm(LoginForm):
+
+    def __init__(self, *args, **kwargs):
+        super(MyCustomLoginForm, self).__init__(*args, **kwargs)
+        for fieldname, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': "form-control",
+            })
