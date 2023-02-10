@@ -23,6 +23,7 @@
 {% else %}
 
 {% url 'account_email' as email_url %}
+{% include "includes/nav-other.html" %}
 
 <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
 
