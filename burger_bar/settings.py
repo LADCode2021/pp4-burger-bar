@@ -53,7 +53,10 @@ INSTALLED_APPS = [
     'booking',
 ]
 
-ACCOUNT_FORMS = {'login': 'booking.forms.MyCustomLoginForm'}
+ACCOUNT_FORMS = {
+    'login': 'booking.forms.MyCustomLoginForm',
+    'signup': 'booking.forms.MyCustomSignupForm',
+    }
 
 SITE_ID = 1
 

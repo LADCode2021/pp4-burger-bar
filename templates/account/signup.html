@@ -6,13 +6,63 @@
 
 {% block content %}
 
-
-<div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-10 col-md-8 col-lg-6">
+<section id="login" class="book-a-table">
+  <div class="container align-items-center justify-content-center" data-aos="fade-up">
+    <div class="section-header">
       <h1>{% trans "Sign Up" %}</h1>
 
       <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+    </div>
+    <div class="row g-0">
+      <div class="d-flex align-items-center justify-content-center reservation-form-bg">
+
+        <form id="signup_form" method="POST" action="{% url 'account_signup' %}" class="signup make-booking-form" data-aos="fade-up"
+          data-aos-delay="100">
+          {% csrf_token %}
+          <div class="row">
+            {{ form.username.errors }}
+            <div class="col-xl-6 form-group">
+              <label for="username">Username</label>
+              {{ form.username }}
+            </div>
+          </div>
+          <div class="row">
+            {{ form.email.errors }}
+            <div class="col-xl-6 form-group">
+              <label for="email">Email</label>
+              {{ form.email }}
+            </div>
+          </div>
+          <div class="row">
+            {{ form.password1.errors }}
+            <div class="col-xl-6 form-group">
+              <label for="password1">Password</label>
+              {{ form.password1 }}
+            </div>
+          </div>
+          <div class="row">
+            {{ form.password2.errors }}
+            <div class="col-xl-6 form-group">
+              <label for="password2">Confirm Password</label>
+              {{ form.password2 }}
+            </div>
+          </div>
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <div class="text-center "><button class="btn btn-primary primaryAction"
+              type="submit">{% trans "Sign Up" %} &raquo;</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-10 col-md-8 col-lg-6">
+
       </p>
 
       <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
@@ -21,11 +71,11 @@
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class = "btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+        <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
       </form>
     </div>
   </div>
 </div>
-
+-->
 
 {% endblock %}
