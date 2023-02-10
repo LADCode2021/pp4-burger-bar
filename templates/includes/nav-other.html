@@ -5,6 +5,17 @@
       <h1>Burger Bar<span>.</span></h1>
     </a>
 
+    {% if messages %}
+  <div>
+    <strong>Messages:</strong>
+    <ul>
+      {% for message in messages %}
+      <li>{{message}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
     <nav id="navbar navbar-fixed-top" class="navbar">
       <ul>
         <li><a href="{% url 'home' %}">Home</a></li>
@@ -21,6 +32,7 @@
     <nav class="navbar navbar-fixed-top">
       <ul>
         {% if user.is_authenticated %}
+        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
         <li><a href="{% url 'account_logout' %}">Logout</a></li>
         {% else %}
         <li><a href="{% url 'account_signup' %}">Register</a></li>

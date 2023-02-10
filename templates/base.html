@@ -54,6 +54,11 @@
 </head>
 
 <body>
+{% if request.path == "" %}
+{% include "includes/nav-home.html" %}
+{% else %}
+{% include "includes/nav-other.html" %}
+{% endif %}
  
   <main class="flex-shrink-0 main-bg">
     {% block content %}

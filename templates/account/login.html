@@ -1,23 +1,18 @@
 {% extends "base.html" %}
-
 {% load i18n %}
 {% load account socialaccount %}
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-{% include "includes/nav-other.html" %}
-<section id="book-a-table" class="book-a-table">
-  <div class="container align-items-center justify-content-cente" data-aos="fade-up">
-
+<section id="login" class="book-a-table">
+  <div class="container align-items-center justify-content-center" data-aos="fade-up">
     <div class="section-header">
       <h2>{% trans "Sign In" %}</h2>
       <p>{% blocktrans %}If you have not created an account yet, then please
         <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
     </div>
-
     <div class="row g-0">
-
       <div class="d-flex align-items-center justify-content-center reservation-form-bg">
         <form method="POST" action="{% url 'account_login' %}" class="login make-booking-form" data-aos="fade-up"
           data-aos-delay="100">
@@ -39,37 +34,11 @@
           {% if redirect_field_value %}
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
           {% endif %}
-          <div class="mb-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your
-              reservation. Thank you!</div>
-          </div>
           <div class="text-center "><button class="btn btn-primary primaryAction"
               type="submit">{% trans "Sign In" %}</button></div>
         </form>
       </div>
-      <!--
-<div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-10 col-md-8 col-lg-6">
-      <h1>{% trans "Sign In" %}</h1>
-
-      <p>{% blocktrans %}If you have not created an account yet, then please
-        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-      <form class="login make-booking-form" data-aos="fade-up" data-aos-delay="100"" method="POST" action="{% url 'account_login' %}">
-        {% csrf_token %}
-        <div class="row gy-4">
-          <div class="col-lg-4 col-md-6">
-            {{ form.as_p }}
-          </div>
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <button class="btn btn-primary primaryAction" type="submit">{% trans "Sign In" %}</button>
-      </form>
     </div>
   </div>
-</div>
--->
-      {% endblock %}
+</section>
+{% endblock %}
