@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ======= Manage Account Section ======= -->
+<section id="book-a-table" class="section-other book-a-table">
+  <div class="container align-items-center justify-content-center" data-aos="fade-up">
+
+    <div class="section-header">
+      <h2>Manage Account</h2>
+    </div>
+
+    <div class="row g-0">
+      <div class="d-flex align-items-center justify-content-center reservation-form-bg">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6">
+            <h2>Account Information</h2>
+            <ul>
+              <li><a href="{% url 'home' %}accounts/password/change">Change Password</a></li>
+              <li><a href="{% url 'home' %}accounts/email">Change Email</a></li>
+            </ul>
+            <h2>Manage Bookings</h2>
+            <ul>
+              <li><a href="{% url 'home' %}bookings">View Bookings</a></li>
+              <li><a href="{% url 'make' %}">Make a new Booking</a></li>
+            </ul>
+          </div>
+      </div><!-- End Manage Account -->
+
+    </div>
+
+  </div>
+</section><!-- End Manage Account Section -->
+
+{%endblock%}

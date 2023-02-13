@@ -1,5 +1,5 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
-<div class="container d-flex align-items-center justify-content-between">
+<div  class="container d-flex align-items-center justify-content-between">
 
     <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto me-lg-0">
       <h1>Burger Bar<span>.</span></h1>
@@ -32,7 +32,7 @@
     <nav class="navbar navbar-fixed-top">
       <ul>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+        <li><a href="{% url 'manage' %}">Manage Account</a></li>
         <li><a href="{% url 'account_logout' %}">Logout</a></li>
         {% else %}
         <li><a href="{% url 'account_signup' %}">Register</a></li>

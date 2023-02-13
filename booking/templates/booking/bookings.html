@@ -2,24 +2,25 @@
 
 {% block content %}
 
-{% for booking in bookings %}
-<div class="card text-center">
-  <div class="card-header">
+<section id="book-a-table" class="section-other book-a-table">
+  {% for booking in bookings %}
+  <div class="card text-center">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Upcoming Booking</h5>
+      {{ booking.first_name }} {{booking.last_name}}
+      <p>{{ booking.date_of_booking }} at {{ booking.time_of_booking }}</p>
+      <p>This booking is for {{ booking.number_of_people }} people</p>
+      <p>Special requests: {{ booking.special_requests }}</p>
+      <a href="/edit/{{ booking.id }}">Edit Booking</a>
+      <a href="/delete/{{ booking.id }}">Delete Booking</a>
+      <a href="/make">Make new booking</a>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Upcoming Booking</h5>
-    {{ booking.first_name }} {{booking.last_name}}
-    <p>{{ booking.date_of_booking }} at {{ booking.time_of_booking }}</p>
-    <p>This booking is for {{ booking.number_of_people }} people</p>
-    <p>Special requests: {{ booking.special_requests }}</p>
-    <a href="/edit/{{ booking.id }}">Edit Booking</a>
-    <a href="/delete/{{ booking.id }}">Delete Booking</a>
-    <a href="/make">Make new booking</a>
-  </div>
-  <div class="card-footer text-muted">
-  </div>
-</div>
-
+</section>
 {% endfor %}
 
 {% endblock content %}

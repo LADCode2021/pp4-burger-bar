@@ -326,6 +326,10 @@ section {
   scroll-margin-top: 90px;
 }
 
+.section-other {
+  padding-top: 100px;
+}
+
 /*--------------------------------------------------------------
   # Desktop Navigation
   --------------------------------------------------------------*/
@@ -455,7 +459,7 @@ section {
     left: 100%;
     visibility: visible;
   }
-}
+} 
 
 @media (min-width: 1280px) and (max-width: 1366px) {
   .navbar .dropdown .dropdown ul {

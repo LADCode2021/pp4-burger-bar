@@ -44,6 +44,10 @@ def get_bookings_guest(request):
         }
     return render(request, 'booking/bookings_guest.html', context)
 
+def get_manage_account(request):
+
+    return render(request, 'booking/manage_account.html')
+
 
 def make_contact(request):
 
