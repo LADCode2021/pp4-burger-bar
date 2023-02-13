@@ -1,9 +1,8 @@
-from django.db import models
 import uuid
+from django.db import models
 from django.contrib.auth.models import User
-from django.core import validators
 from django.utils import timezone
-import datetime
+
 
 TIME_CHOICES = (
         ('12:00:00', '12pm'),
@@ -54,6 +53,10 @@ TIME_CHOICES = (
 
 
 class Booking(models.Model):
+    """
+    Class to define fields for BookingForm and Booking table in db
+    """
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, blank=True
@@ -75,11 +78,15 @@ class Booking(models.Model):
 
 
 class Contact(models.Model):
+    """
+    Class to define fields for ContactForm and Contact table in db
+    """
+
     first_name = models.CharField(max_length=25, null=False, blank=False)
     last_name = models.CharField(max_length=25, null=False, blank=False)
     email_address = models.EmailField()
     phone_number = models.IntegerField()
     comments = models.TextField()
 
-    def __str__(self):  # code adapted from Models Part 2 FST walkthrough
+    def __str__(self):  # code adapted from Models Part 2 FST walk-through
         return self.first_name + " " + self.last_name + " | "
