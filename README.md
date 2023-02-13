@@ -50,7 +50,9 @@ Upon failing the initial submission of this project I then added new functionali
 
 # Testing
 
-## Bugs
+## Manual Testing Bugs
+
+When testing Booking Form on deployed project it would not submit. I tried different values in all fields and it would not submit. Upon investigation it turns out that ElephantSQL does not allow zeros at the start of integer fields. My phone number field was an integer field. SQLite3 in development just removed them so I was initially stumped. When I thought about it a phone number doesn't actually need to be an integer field and can infact include characters such as '+' for country codes. So I changed the field in models and re-migrated to databases. This resolved the issue.
 
 ## Remaining Bugs
 
