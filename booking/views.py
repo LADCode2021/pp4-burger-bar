@@ -23,7 +23,6 @@ def get_home(request):
         }
     return render(request, 'booking/index.html', context)
 
-
 @login_required(login_url='accounts/login')
 def get_bookings(request):
     email = request.user.email
@@ -36,13 +35,15 @@ def get_bookings(request):
 
 
 def get_bookings_guest(request):
-    guest_id = request.user.id
-    bookings = Booking.objects.filter(guest_id=id)
+    email = request.session.get('email_address')
+    print(email)
+    bookings = Booking.objects.filter(email_address=email)
     context = {
-        'id': id,
+        'email': email,
         'bookings': bookings
         }
     return render(request, 'booking/bookings_guest.html', context)
+
 
 def get_manage_account(request):
 
@@ -72,20 +73,23 @@ def get_thank_you(request):
 def make_booking(request):
 
     if request.method == 'POST':
+
         form = BookingForm(request.POST)
         if form.is_valid():
+            request.session['email_address'] = request.POST['email_address']
             form.save()
             print('form saved')
             if request.user.is_authenticated:
                 return redirect(get_bookings)
             if not request.user.is_authenticated:
                 return redirect(get_bookings_guest)
-  
+
     form = BookingForm()
     context = {
         'form': form
         }
     return render(request, 'booking/make_booking.html', context)
+
 
 @login_required(login_url='accounts/login')
 def edit_booking(request, booking_id):
@@ -101,6 +105,7 @@ def edit_booking(request, booking_id):
         'form': form
         }
     return render(request, 'booking/edit_booking.html', context)
+
 
 @login_required(login_url='accounts/login')
 def delete_booking(request, booking_id):

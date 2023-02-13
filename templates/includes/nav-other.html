@@ -1,20 +1,9 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
-<div  class="container d-flex align-items-center justify-content-between">
+  <div class="container d-flex align-items-center justify-content-between">
 
     <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto me-lg-0">
       <h1>Burger Bar<span>.</span></h1>
     </a>
-
-    {% if messages %}
-  <div>
-    <strong>Messages:</strong>
-    <ul>
-      {% for message in messages %}
-      <li>{{message}}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
 
     <nav id="navbar navbar-fixed-top" class="navbar">
       <ul>
@@ -37,6 +26,14 @@
         {% else %}
         <li><a href="{% url 'account_signup' %}">Register</a></li>
         <li><a href="{% url 'account_login' %}">Login</a></li>
+        {% endif %}
+        {% if messages %}
+        <strong>Messages:</strong>
+        {% for message in messages %}
+        <ul>
+          <li>{{message}}</li>
+        </ul>
+        {% endfor %}
         {% endif %}
       </ul>
     </nav>
