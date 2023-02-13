@@ -35,11 +35,10 @@ def get_bookings(request):
 
 
 def get_bookings_guest(request):
-    email = request.session.get('email_address')
-    print(email)
-    bookings = Booking.objects.filter(email_address=email)
+    id = request.session.get('id')
+    bookings = Booking.objects.filter(id=id)
     context = {
-        'email': email,
+        'id': id,
         'bookings': bookings
         }
     return render(request, 'booking/bookings_guest.html', context)
@@ -76,7 +75,7 @@ def make_booking(request):
 
         form = BookingForm(request.POST)
         if form.is_valid():
-            request.session['email_address'] = request.POST['email_address']
+            request.session['id'] = request.POST['id']
             form.save()
             print('form saved')
             if request.user.is_authenticated:
