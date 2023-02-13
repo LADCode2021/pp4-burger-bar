@@ -30,4 +30,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('manage', views.get_manage_account, name='manage'),
     path('manage_bookings', views.get_manage_bookings, name='manage_bookings'),
+    path('manage_contacts', views.get_manage_contacts, name='manage_contacts'),
+    path('delete_contact/<contact_id>', views.delete_contact, name='delete_contact'),
 ]

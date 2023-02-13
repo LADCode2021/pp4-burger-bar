@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="book-a-table" class="section-other book-a-table">
+  {% for contact in contacts %}
+  <div class="card text-center">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Contact</h5>
+      {{ contact.first_name }} {{contact.last_name}}
+      <p>Email address: {{ contact.email_address }}</p>
+      <p>Phone number: {{ contact.phone_number }}</p>
+      <p>Comments: {{ contact.comments }}</p>
+      <a href="/delete_contact/{{ contact.id }}">Delete Contact</a>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+{% endblock content %}

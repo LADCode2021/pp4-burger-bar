@@ -4,7 +4,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import BookingForm, ContactForm
-from .models import Booking
+from .models import Booking, Contact
 
 
 def get_home(request):
@@ -48,10 +48,10 @@ def get_bookings_guest(request):
     in session in make_booking against id posted to db.
     """
 
-    id = request.session.get('id')
-    bookings = Booking.objects.filter(id=id)
+    guest_booking_id = request.session.get('id')
+    bookings = Booking.objects.filter(id=guest_booking_id)
     context = {
-        'id': id,
+        'guest_booking_id': guest_booking_id,
         'bookings': bookings
         }
     return render(request, 'booking/bookings_guest.html', context)
@@ -81,6 +81,20 @@ def get_manage_bookings(request):
     return render(request, 'booking/manage_bookings.html', context)
 
 
+@staff_member_required
+def get_manage_contacts(request):
+    """
+    Get manage_bookings page if staff member is logged in.
+    Or redirect to admin login page then get manage_bookings page.
+    """
+
+    contacts = Contact.objects.all()
+    context = {
+        'contacts': contacts
+    }
+    return render(request, 'booking/manage_contacts.html', context)
+
+
 def make_contact(request):
     """
     Get contact page and post ContactForm to db.
@@ -98,6 +112,20 @@ def make_contact(request):
         'form': form
         }
     return render(request, 'booking/contact.html', context)
+
+
+@staff_member_required
+def delete_contact(request, contact_id):
+    """
+    Allow staff to delete contacts.
+    Loads new page and renders with unique id to ensure
+    only that contact can be deleted.
+    Redirect to admin login if not logged in.
+    """
+
+    contact = get_object_or_404(Contact, id=contact_id)
+    contact.delete()
+    return redirect('manage_contacts')
 
 
 def get_thank_you(request):
@@ -158,7 +186,7 @@ def edit_booking(request, booking_id):
 
 
 @login_required(login_url='accounts/login')
-def delete_booking(booking_id):
+def delete_booking(request, booking_id):
     """
     Allow logged in user to delete their booking.
     Loads new page and renders with unique id to ensure

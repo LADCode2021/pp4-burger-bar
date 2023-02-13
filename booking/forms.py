@@ -1,9 +1,8 @@
-import uuid
 from django import forms
-from django.forms import TextInput, EmailInput, NumberInput, DateInput, TimeInput
-from .models import Booking, Contact
+from django.forms import TextInput, EmailInput, NumberInput, TimeInput
 from django.utils.timezone import now
 from allauth.account.forms import LoginForm, SignupForm
+from .models import Booking, Contact
 
 
 class DateInput(forms.DateInput):
@@ -11,17 +10,17 @@ class DateInput(forms.DateInput):
     Sets date input and disables previous dates
     Datepicker used from:
     https://mrasimzahid.medium.com/how-to-implement-django-datepicker-calender-in-forms-date-field-9e23479b5db
-    
+
     Disabling previous dates taken from:
     https://stackoverflow.com/questions/74227268/how-to-make-a-date-picker-that-does-not-select-previous-dates-in-django
     """
-    input_type = 'date'  
+    input_type = 'date'
+
     def get_context(self, name, value, attrs):
         attrs.setdefault('min', now().strftime('%Y-%m-%d'))
         return super().get_context(name, value, attrs)
 
 
-# Simple datepicker class
 class DateOfBooking(forms.Form):
     """
     Date of Booking
@@ -34,8 +33,16 @@ Some widgets adapated from:
 https://medium.com/swlh/how-to-style-your-django-forms-7e8463aae4fa
 """
 
+
 class BookingForm(forms.ModelForm):
+    """
+    Class to give metadata to BookingForm fields
+    """
     class Meta:
+        """
+        Meta class for Booking model
+        """
+
         model = Booking
         fields = [
             'id',
@@ -88,12 +95,18 @@ class BookingForm(forms.ModelForm):
                 'class': "form-control",
                 'style': 'max-width: 300px;',
                 'placeholder': 'Special Requests'
-                }), 
+                }),
         }
 
 
 class ContactForm(forms.ModelForm):
+    """
+    Class to give metadata to ContactForm fields
+    """
     class Meta:
+        """
+        Meta class for Contact model
+        """
         model = Contact
         fields = [
             'first_name',
@@ -127,6 +140,9 @@ class ContactForm(forms.ModelForm):
 
 
 class MyCustomLoginForm(LoginForm):
+    """
+    Class to allow css overwrite of allauth default field styling
+    """
 
     def __init__(self, *args, **kwargs):
         super(MyCustomLoginForm, self).__init__(*args, **kwargs)
@@ -135,7 +151,11 @@ class MyCustomLoginForm(LoginForm):
                 'class': "form-control",
             })
 
+
 class MyCustomSignupForm(SignupForm):
+    """
+    Class to allow css overwrite of allauth default field styling
+    """
 
     def __init__(self, *args, **kwargs):
         super(MyCustomSignupForm, self).__init__(*args, **kwargs)
