@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ======= Admin management Section ======= -->
+<section id="book-a-table" class="section-other book-a-table">
+  <div class="container align-items-center justify-content-center" data-aos="fade-up">
+
+    <div class="section-header">
+      <h2>Admin Management</h2>
+    </div>
+
+    <div class="row g-0">
+      <div class="d-flex align-items-center justify-content-center reservation-form-bg">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6">
+            <h2>Admin Management</h2>
+            <ul>
+              <li><a href="{% url 'manage_bookings' %}">Manage Bookings</a></li>
+              <li><a href="{% url 'manage_contacts' %}">Manage Contacts</a></li>
+            </ul>
+          </div>
+      </div><!-- End Manage Account -->
+
+    </div>
+
+  </div>
+</section><!-- End Manage Account Section -->
+
+{%endblock%}

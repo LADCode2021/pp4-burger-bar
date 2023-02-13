@@ -21,7 +21,7 @@
     <nav class="navbar navbar-fixed-top">
       <ul>
         {% if user.is_staff and user.is_authenticated %}
-        <li><a href="{% url 'manage_bookings' %}">Manage Bookings</a></li>
+        <li><a href="{% url 'admin_management' %}">Admin Management</a></li>
         <li><a href="{% url 'manage' %}">Manage Account</a></li>
         <li><a href="{% url 'account_logout' %}">Logout</a></li>
         {% elif user.is_authenticated and uses.is_staff == False %}

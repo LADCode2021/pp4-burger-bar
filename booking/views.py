@@ -67,6 +67,16 @@ def get_manage_account(request):
     return render(request, 'booking/manage_account.html')
 
 
+@login_required(login_url='accounts/login')
+def get_admin_management(request):
+    """
+    Get admin_management page for logged in staff.
+    Or redirect to admin sign-ib page and then load page.
+    """
+
+    return render(request, 'booking/admin_management.html')
+
+
 @staff_member_required
 def get_manage_bookings(request):
     """

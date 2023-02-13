@@ -32,4 +32,5 @@ urlpatterns = [
     path('manage_bookings', views.get_manage_bookings, name='manage_bookings'),
     path('manage_contacts', views.get_manage_contacts, name='manage_contacts'),
     path('delete_contact/<contact_id>', views.delete_contact, name='delete_contact'),
+    path('admin_management', views.get_admin_management, name='admin_management'),
 ]
