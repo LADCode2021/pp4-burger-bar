@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.admin.views.decorators import staff_member_required
 from .models import Booking
 from .forms import BookingForm, ContactForm
 from django.core import validators
@@ -44,9 +45,19 @@ def get_bookings_guest(request):
     return render(request, 'booking/bookings_guest.html', context)
 
 
+@login_required(login_url='accounts/login')
 def get_manage_account(request):
-
     return render(request, 'booking/manage_account.html')
+
+
+@staff_member_required
+def get_manage_bookings(request):
+
+    bookings = Booking.objects.all()
+    context = {
+        'bookings': bookings
+    }
+    return render(request, 'booking/manage_bookings.html', context)
 
 
 def make_contact(request):

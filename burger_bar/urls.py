@@ -29,4 +29,5 @@ urlpatterns = [
     path('delete/<booking_id>', views.delete_booking, name='delete'),
     path('accounts/', include('allauth.urls')),
     path('manage', views.get_manage_account, name='manage'),
+    path('manage_bookings', views.get_manage_bookings, name='manage_bookings'),
 ]
