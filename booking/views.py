@@ -166,6 +166,7 @@ def make_booking(request):
             new_date = form.cleaned_data.get("date_of_booking")
             if not Booking.objects.filter(date_of_booking=new_date).exists():
                 request.session['id'] = request.POST['id']
+                request.session['date_of_booking'] = request.POST['date_of_booking']
                 form.save()
                 print('form saved')
                 if request.user.is_authenticated:
