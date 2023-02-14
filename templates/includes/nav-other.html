@@ -24,20 +24,33 @@
         <li><a href="{% url 'admin_management' %}">Admin Management</a></li>
         <li><a href="{% url 'manage' %}">Manage Account</a></li>
         <li><a href="{% url 'account_logout' %}">Logout</a></li>
-        {% elif user.is_authenticated and uses.is_staff == False %}
-        <li><a href="{% url 'manage' %}">Manage Account</a></li>
-        <li><a href="{% url 'account_logout' %}">Logout</a></li>
-        {% else %}
-        <li><a href="{% url 'account_signup' %}">Register</a></li>
-        <li><a href="{% url 'account_login' %}">Login</a></li>
-        {% endif %}
         {% if messages %}
-        <strong>Messages:</strong>
         {% for message in messages %}
         <ul>
           <li>{{message}}</li>
         </ul>
         {% endfor %}
+        {% endif %}
+        {% elif user.is_authenticated and uses.is_staff == False %}
+        <li><a href="{% url 'manage' %}">Manage Account</a></li>
+        <li><a href="{% url 'account_logout' %}">Logout</a></li>
+        {% if messages %}
+        {% for message in messages %}
+        <ul>
+          <li>{{message}}</li>
+        </ul>
+        {% endfor %}
+        {% endif %}
+        {% else %}
+        <li><a href="{% url 'account_signup' %}">Register</a></li>
+        <li><a href="{% url 'account_login' %}">Login</a></li>
+        {% if messages %}
+        {% for message in messages %}
+        <ul>
+          <li>{{message}}</li>
+        </ul>
+        {% endfor %}
+        {% endif %}
         {% endif %}
       </ul>
     </nav>

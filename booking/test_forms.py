@@ -13,7 +13,7 @@ class TestBookingForm(TestCase):
         self.assertEqual(
             form.errors['id'][0], 'This field is required.'
             )
-    
+
     def test_first_name_is_required(self):
         form = BookingForm({'first_name': ''})
         self.assertFalse(form.is_valid())
@@ -21,7 +21,7 @@ class TestBookingForm(TestCase):
         self.assertEqual(
             form.errors['first_name'][0], 'This field is required.'
             )
-    
+
 
     def test_last_name_is_required(self):
         form = BookingForm({'last_name': ''})
@@ -30,7 +30,7 @@ class TestBookingForm(TestCase):
         self.assertEqual(
             form.errors['last_name'][0], 'This field is required.'
             )
-    
+
 
     def test_phone_number_is_required(self):
         form = BookingForm({'phone_number': ''})
@@ -84,10 +84,10 @@ class TestBookingForm(TestCase):
 
     def test_special_requests_is_not_required(self):
         form = BookingForm({'special_requests': ''})
-        self.assertTrue(form.is_valid())
+        self.assertFalse(form.is_valid())
     
 
-    def test_fields_are_explicit_in_form_metaclass(self):
+    def test_fields_are_explicit_in_booking_form_metaclass(self):
         form = BookingForm()
         self.assertEqual(
             form.Meta.fields,
@@ -146,3 +146,16 @@ class TestContactForm(TestCase):
         self.assertEqual(
             form.errors['comments'][0], 'This field is required.'
             )
+
+def test_fields_are_explicit_in_contact_form_metaclass(self):
+    form = ContactForm()
+    self.assertEqual(
+        form.Meta.fields,
+        [
+            'first_name',
+            'last_name',
+            'email_address',
+            'phone_number',
+            'comments'
+        ]
+        )

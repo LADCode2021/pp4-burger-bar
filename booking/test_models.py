@@ -8,11 +8,11 @@ class TestModels(TestCase):
             first_name='Test',
             last_name='Test',
             email_address='test@test.com',
-            phone_number=int('07554433072'),
+            phone_number=('07554433072'),
             date_of_booking='2023-01-01',
             time_of_booking='06:35',
             number_of_people=int('5'),
-            special_requests='test'
+            special_requests=''
             )
         self.assertEqual(
             str('booking'), 'Test' + " " + 'Test' + " | " + '2023-01-01' + " at " + '06:35')
