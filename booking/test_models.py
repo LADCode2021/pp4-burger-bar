@@ -1,9 +1,9 @@
 from django.test import TestCase
-from .models import Booking
+from .models import Booking, Contact
 
-class TestModels(TestCase):
+class TestBookingModel(TestCase):
 
-    def test_string_method_returns_name(self):
+    def test_booking_string_method_returns_name(self):
         booking = Booking.objects.create(
             id='c0a68fa4-c0fe-4b33-b37a-88bd1808e156',
             first_name='test',
@@ -16,4 +16,18 @@ class TestModels(TestCase):
             special_requests='test'
             )
         self.assertEqual(
-            str('booking'), 'test' + " " + 'test' + " | " + '2023-02-20' + " at " + '12:30:00')
+            str(booking), 'test' + " " + 'test' + " | " + '2023-02-20' + " at " + '12:30:00')
+
+
+class TestContactModel(TestCase):
+
+    def test_contact_string_method_returns_name(self):
+        contact = Contact.objects.create(
+            first_name='test',
+            last_name='test',
+            email_address='test@test.com',
+            phone_number='07555555555',
+            comments='test'
+            )
+        self.assertEqual(
+            str(contact), 'test' + " " + 'test' + " | ")

@@ -76,15 +76,16 @@ class TestBookingForm(TestCase):
     
 
     def test_special_requests_is_not_required(self):
-        form = BookingForm(
-            {'first_name': 'Test'},
-            {'last_name': 'Test'},
-            {'email_address': 'test@test.com'},
-            {'phone_number': '07555555555'},
-            {'date_of_booking': '2023-02-20'},
-            {'time_of_booking': '12:30:00'},
-            {'number_of_people': '5'},
-            {'special_requests': 'None'}
+        form = Booking.objects.create(
+            id='c0a68fa4-c0fe-4b33-b37a-88bd1808e156',
+            first_name='test',
+            last_name='test',
+            email_address='test@test.com',
+            phone_number='07555555555',
+            date_of_booking='2023-02-20',
+            time_of_booking='12:30:00',
+            number_of_people='1',
+            special_requests=''
             )
         self.assertTrue(form.is_valid())
     
