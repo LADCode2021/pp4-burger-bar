@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.core.validators import MinLengthValidator, EmailValidator
+from django.core.validators import MinLengthValidator, MaxLengthValidator, EmailValidator
 
 
 TIME_CHOICES = (
@@ -64,15 +64,13 @@ class Booking(models.Model):
         )
     first_name = models.CharField(max_length=25, null=False, blank=False)
     last_name = models.CharField(max_length=25, null=False, blank=False)
-    email_address = models.EmailField(
-        default="email@email.com", validators=[EmailValidator()]
-        )
+    email_address = models.EmailField(validators=[EmailValidator()])
     phone_number = phone_number = models.CharField(
-        max_length=11, validators=[
+        validators=[
             MinLengthValidator(
                 11, message="Please enter valid phone number starting with 0"
                 )
-            ], null=False, blank=False
+                ], max_length=11, null=False, blank=False
         )
     date_of_booking = models.DateField(default=timezone.now)
     time_of_booking = models.CharField(

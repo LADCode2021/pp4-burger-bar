@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .forms import BookingForm, ContactForm
 from .models import Booking, Contact
 
@@ -157,13 +158,21 @@ def make_booking(request):
 
         form = BookingForm(request.POST)
         if form.is_valid():
-            request.session['id'] = request.POST['id']
-            form.save()
-            print('form saved')
-            if request.user.is_authenticated:
-                return redirect(get_bookings)
-            if not request.user.is_authenticated:
-                return redirect(get_bookings_guest)
+            new_date = form.cleaned_data.get("date_of_booking")
+            if not Booking.objects.filter(date_of_booking=new_date).exists():
+                request.session['id'] = request.POST['id']
+                form.save()
+                print('form saved')
+                if request.user.is_authenticated:
+                    return redirect(get_bookings)
+                if not request.user.is_authenticated:
+                    return redirect(get_bookings_guest)
+            else:
+                messages.success(request, "This booking is taken. Please try another date/time")
+                context = {
+                    'form': form
+                    }
+            return render(request, 'booking/make_booking.html', context)
         else:
             context = {
                 'form': form
