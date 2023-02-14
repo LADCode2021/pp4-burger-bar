@@ -92,7 +92,13 @@ class Contact(models.Model):
     first_name = models.CharField(max_length=25, null=False, blank=False)
     last_name = models.CharField(max_length=25, null=False, blank=False)
     email_address = models.EmailField()
-    phone_number = phone_number = models.CharField(max_length=11, validators=[MinLengthValidator(11, message="Please enter valid phone number")], null=False, blank=False)
+    phone_number = phone_number = models.CharField(
+        validators=[
+            MinLengthValidator(
+                11, message="Please enter valid phone number starting with 0"
+                )
+                ], max_length=11, null=False, blank=False
+        ),
     comments = models.TextField()
 
     def __str__(self):  # code adapted from Models Part 2 FST walk-through
