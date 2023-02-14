@@ -77,7 +77,7 @@ class Booking(models.Model):
         max_length=10, choices=TIME_CHOICES, default=""
         )
     number_of_people = models.IntegerField()
-    special_requests = models.CharField(max_length=200)
+    special_requests = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):  # code adapted from Models Part 2 FST walkthrough
         return self.first_name + " " + self.last_name + " | " \
