@@ -164,12 +164,17 @@ def make_booking(request):
                 return redirect(get_bookings)
             if not request.user.is_authenticated:
                 return redirect(get_bookings_guest)
-
-    form = BookingForm()
-    context = {
-        'form': form
-        }
-    return render(request, 'booking/make_booking.html', context)
+        else:
+            context = {
+                'form': form
+                }
+            return render(request, 'booking/make_booking.html', context)
+    else:
+        form = BookingForm()
+        context = {
+            'form': form
+            }
+        return render(request, 'booking/make_booking.html', context)
 
 
 @login_required(login_url='accounts/login')

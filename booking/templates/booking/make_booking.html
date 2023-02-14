@@ -11,6 +11,7 @@
       <p>Book A Table</p>
     </div>
 
+
     <div class="row g-0">
 
       <div class="d-flex align-items-center justify-content-center reservation-form-bg">
@@ -21,35 +22,49 @@
             <div class="col-lg-4 col-md-6">
               {{ form.first_name }}
             </div>
+            {{ form.last_name.errors }}
             <div class="col-lg-4 col-md-6">
               {{ form.last_name }}
             </div>
+            {{ form.email_address.errors }}
             <div class="col-lg-4 col-md-6">
               {{ form.email_address }}
             </div>
             <div class="col-lg-4 col-md-6">
               {{ form.phone_number }}
             </div>
+            {{ form.date_of_booking.errors }}
             <div class="col-lg-4 col-md-6">
               {{ form.date_of_booking }}
             </div>
+            {{ form.time_of_booking.errors }}
             <div class="col-lg-4 col-md-6">
               {{ form.time_of_booking }}
             </div>
+            {{ form.number_of_people.errors }}
             <div class="col-lg-4 col-md-6">
               {{ form.number_of_people }}
             </div>
           </div>
+          {{ form.special_requests.errors }}
           <div class="form-group mt-3">
             {{ form.special_requests }}
           </div>
           <div class="mb-3">
             <div class="loading">Loading</div>
             <div class="error-message"></div>
-            <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+            <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your
+              reservation. Thank you!</div>
           </div>
           <div class="text-center"><button type="submit">Book a Table</button></div>
         </form>
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <p> {{ error }} </p>
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
       </div><!-- End Reservation Form -->
 
     </div>
