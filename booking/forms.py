@@ -71,7 +71,7 @@ class BookingForm(forms.ModelForm):
                 'style': 'max-width: 300px;',
                 'placeholder': 'Email Address'
                 }),
-            'phone_number': NumberInput(attrs={
+            'phone_number': TextInput()(attrs={
                 'class': "form-control",
                 'style': 'max-width: 300px;',
                 'placeholder': 'Phone Number'
@@ -128,7 +128,7 @@ class ContactForm(forms.ModelForm):
                 'class': "form-control",
                 'placeholder': 'Email Address'
                 }),
-            'phone_number': NumberInput(attrs={
+            'phone_number': TextInput(attrs={
                 'class': "form-control",
                 'placeholder': 'Phone Number'
                 }),
