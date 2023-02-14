@@ -72,6 +72,25 @@ I tested whether the field would allow me to enter an incorrect email. It didn't
 
 This test turned out to be the most important test. I had already fixed this field in my initial test. However, I discovered that I could essentially put any length of numbers in and it would submit. This would not work as I wanted at least the right length for a phone number. I changed the maxlength to 11 (standard UK phone number length) but discovered I couldn't also set a minimum length. So at this point a user could submit any set of numbers and letters up to 11. I researched and found the MinLengthValidator. I had already imported Django Validators so it was simple enough to add this validator to the field. When I reran the test however I discovered a fatal flaw in how my make_booking view had been setup. If the form input was invalid it was would just refresh the form, delete all the inputs and not display an error message. After a lot of research via Slack, Google and StackOverflow I discovered a neat solution and added an if else after form.is_valid that would return the form with the inputs as is and raise the error message underneath the field once I'd place an if messages code block to the make_bookings.html template.
 
+### Contact Form Tests
+
+* Test form submits on index.html/contact.html
+
+When testing the Contact Form on deployed project it would not submit. I tried different values in all fields and it would not submit. Upon investigation it turned out to be the same issue that BookingForm had with ElephantSQL not allowing zeros at the start of integer fields. My phone number field was an integer field. SQLite3 in development just removed them so I was initially stumped.
+
+To fix this error I converted the field to a CharField. This resolved the issue and I was able to submit the form on my deployed project. However, after submitting the form it took me to an incorrect page. I checked and I had added the wrong page in the url path in urls.py.
+
+* Test empty values in all fields on index.html/contact.html (except date and time which are enforced)
+
+I tested all fields individually as empty fields and all fields raised an error asking the user to fill in the field. This did raise the issue that I didn't actually want the special_requests field to have to have a value. To correct this I add null=True and blank=True to the CharField in models.py and re-migrated to the database.
+
+* Test valid email address on index.html/contact.html
+
+I tested whether the field would allow me to enter an incorrect email. It didn't let me but the error message wasn't very intuitive so I imported Django Validators to my models and added the EmailValidator. This has more intuitive validation errors such as: please enter '@' in an email address.
+
+* Test valid phone number on index.html/contact.html
+
+This test turned out to be the most important test. I had already fixed this field in my initial test. However, I discovered that I could essentially put any length of numbers in and it would submit. This would not work as I wanted at least the right length for a phone number. I changed the maxlength to 11 (standard UK phone number length) but discovered I couldn't also set a minimum length. So at this point a user could submit any set of numbers and letters up to 11. I researched and found the MinLengthValidator. I had already imported Django Validators so it was simple enough to add this validator to the field. When I reran the test however I discovered a fatal flaw in how my make_booking view had been setup. If the form input was invalid it was would just refresh the form, delete all the inputs and not display an error message. After a lot of research via Slack, Google and StackOverflow I discovered a neat solution and added an if else after form.is_valid that would return the form with the inputs as is and raise the error message underneath the field once I'd place an if messages code block to the make_bookings.html template.
 
 
 ## Remaining Bugs
