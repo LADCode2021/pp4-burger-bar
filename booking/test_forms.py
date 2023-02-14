@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .forms import BookingForm, ContactForm, MyCustomLoginForm, MyCustomSignupForm, DateInput, DateOfBooking
+from .models import Booking
 
 # Create your tests here.
 
@@ -47,15 +48,7 @@ class TestBookingForm(TestCase):
         self.assertEqual(
             form.errors['email_address'][0], 'This field is required.'
             )
-    
 
-    def test_email_address_is_required(self):
-        form = BookingForm({'email_address': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('email_address', form.errors.keys())
-        self.assertEqual(
-            form.errors['email_address'][0], 'This field is required.'
-            )
     
     def test_date_of_booking_is_required(self):
         form = BookingForm({'date_of_booking': ''})
@@ -83,8 +76,17 @@ class TestBookingForm(TestCase):
     
 
     def test_special_requests_is_not_required(self):
-        form = BookingForm({'special_requests': ''})
-        self.assertFalse(form.is_valid())
+        form = BookingForm(
+            {'first_name': 'Test'},
+            {'last_name': 'Test'},
+            {'email_address': 'test@test.com'},
+            {'phone_number': '07555555555'},
+            {'date_of_booking': '2023-02-20'},
+            {'time_of_booking': '12:30:00'},
+            {'number_of_people': '5'},
+            {'special_requests': 'None'}
+            )
+        self.assertTrue(form.is_valid())
     
 
     def test_fields_are_explicit_in_booking_form_metaclass(self):
@@ -146,16 +148,17 @@ class TestContactForm(TestCase):
         self.assertEqual(
             form.errors['comments'][0], 'This field is required.'
             )
-
-def test_fields_are_explicit_in_contact_form_metaclass(self):
-    form = ContactForm()
-    self.assertEqual(
-        form.Meta.fields,
-        [
-            'first_name',
-            'last_name',
-            'email_address',
-            'phone_number',
-            'comments'
-        ]
-        )
+            
+            
+    def test_fields_are_explicit_in_contact_form_metaclass(self):
+        form = ContactForm()
+        self.assertEqual(
+            form.Meta.fields,
+            [
+                'first_name',
+                'last_name',
+                'email_address',
+                'phone_number',
+                'comments'
+                ]
+                )

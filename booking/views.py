@@ -163,22 +163,14 @@ def make_booking(request):
 
         form = BookingForm(request.POST)
         if form.is_valid():
-            new_date = form.cleaned_data.get("date_of_booking")
-            if not Booking.objects.filter(date_of_booking=new_date).exists():
-                request.session['id'] = request.POST['id']
-                request.session['date_of_booking'] = request.POST['date_of_booking']
-                form.save()
-                print('form saved')
-                if request.user.is_authenticated:
-                    return redirect(get_bookings)
-                if not request.user.is_authenticated:
-                    return redirect(get_bookings_guest)
-            else:
-                messages.success(request, "This booking is taken. Please try another date/time")
-                context = {
-                    'form': form
-                    }
-            return render(request, 'booking/make_booking.html', context)
+            request.session['id'] = request.POST['id']
+            request.session['date_of_booking'] = request.POST['date_of_booking']
+            form.save()
+            print('form saved')
+            if request.user.is_authenticated:
+                return redirect(get_bookings)
+            if not request.user.is_authenticated:
+                return redirect(get_bookings_guest)
         else:
             context = {
                 'form': form
