@@ -31,7 +31,7 @@
         </ul>
         {% endfor %}
         {% endif %}
-        {% elif user.is_authenticated and uses.is_staff == False %}
+        {% elif user.is_authenticated and user.is_staff == False %}
         <li><a href="{% url 'manage' %}">Manage Account</a></li>
         <li><a href="{% url 'account_logout' %}">Logout</a></li>
         {% if messages %}
