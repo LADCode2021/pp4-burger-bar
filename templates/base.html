@@ -54,7 +54,7 @@
 </head>
 
 <body>
-{% if request.path == "" %}
+{% if request.path == "/" %}
 {% include "includes/nav-home.html" %}
 {% else %}
 {% include "includes/nav-other.html" %}

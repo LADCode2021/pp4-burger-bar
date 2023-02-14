@@ -91,7 +91,7 @@ class Contact(models.Model):
 
     first_name = models.CharField(max_length=25, null=False, blank=False)
     last_name = models.CharField(max_length=25, null=False, blank=False)
-    email_address = models.EmailField()
+    email_address = models.EmailField(validators=[EmailValidator()])
     phone_number = models.CharField(validators=[
         MinLengthValidator
         (

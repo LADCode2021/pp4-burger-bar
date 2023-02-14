@@ -117,12 +117,17 @@ def make_contact(request):
             form.save()
             print('form saved')
             return redirect(get_thank_you)
-
-    form = ContactForm()
-    context = {
-        'form': form
-        }
-    return render(request, 'booking/contact.html', context)
+        else:
+            context = {
+                'form': form
+                }
+            return render(request, 'booking/contact.html', context)
+    else:
+        form = ContactForm()
+        context = {
+            'form': form
+            }
+        return render(request, 'booking/contact.html', context)
 
 
 @staff_member_required
