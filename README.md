@@ -32,6 +32,58 @@ I completed all of these stories and then added further functionality. Staff als
 
 ## Existing Features
 
+### Fixed Nav with anchor links on index.html and links back to index.html sections from all other pages except dedicated contact page
+
+![](docs/images/fixed-nav-screenshot.png)
+
+### Index.html Hero Section
+
+![](docs/images/hero-section-screenshot.png)
+
+### Index.html About Us Section
+
+![](docs/images/about-us-section-screenshot.png)
+
+### Index.html Menu Section
+
+![](docs/images/menu-section-screenshot.png)
+
+### Index.html contact Section
+
+![](docs/images/contact-section-screenshot.png)
+
+### Book a Table Page
+
+![](docs/images/book-a-table-page.png)
+
+### Bookings page when logged in with edit, delete buttons
+
+![](docs/images/booking-logged-in-page-screenshot.png)
+
+### Edit Booking page
+
+![](docs/images/edit-booking-page.png)
+
+### Booking when guest with link to register or login
+
+![](docs/images/booking-guest-page-screenshot.png)
+
+
+
+
+
+### Registration Page
+
+![](docs/images/registration-page-screenshot.png)
+
+### Login Page
+
+![](docs/images/login-page-screenshot.png)
+
+### Log Out Page
+
+![](docs/images/log-out-page.png)
+
 
 
 ## Future Features
@@ -211,6 +263,8 @@ I used the following technologies:
 * Some HTML, CSS and JS adapted from: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/.
 
 * Code Institute lesson content adapted in some areas.
+
+* About us section copy inspired by: https://www.conniescookieskansascity.com/about
 
 
 

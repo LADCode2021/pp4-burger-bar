@@ -2,43 +2,84 @@
 
 {% block content %}
 
-<div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-10 col-md-8 col-lg-6">
-      <h1>Make Booking</h1>
-      <form method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-          {{ form.first_name }}
-        </div>
-        <div class="form-group">
-          {{ form.last_name }}
-        </div>
-        <div class="form-group">
-          {{ form.email_address }}
-        </div>
-        <div class="form-group">
-          {{ form.phone_number }}
-        </div>
-        <div class="form-group">
-          {{ form.date_of_booking }}
-        </div>
-        <div class="form-group">
-          {{ form.time_of_booking }}
-        </div>
-        <div class="form-group">
-          {{ form.number_of_people }}
-        </div>
-        <div class="form-group">
-          {{ form.special_requests }}
-        </div>
-        <div>
-          <p>
-            <button type="submit" class="btn btn-primary">Edit Booking</button>
-          </p>
-        </div>
-      </form>
+<!-- ======= Edit Booking Section ======= -->
+<section id="book-a-table" class="section-other book-a-table">
+  <div class="container align-items-center justify-content-cente" data-aos="fade-up">
+
+    <div class="section-header">
+      <h2>Edit Booking Page</h2>
+      <p>Edit Booking</p>
     </div>
+
+
+    <div class="row g-0">
+
+      <div class="d-flex align-items-center justify-content-center reservation-form-bg">
+        <form method="POST" class="make-booking-form" data-aos="fade-up" data-aos-delay="100">
+          {% csrf_token %}
+          {{ form.id.as_hidden }}
+          <div class="row gy-4">
+            <div class="col-lg-4 col-md-6">
+              {{ form.first_name }}
+            </div>
+            {{ form.last_name.errors }}
+            <div class="col-lg-4 col-md-6">
+              {{ form.last_name }}
+            </div>
+            {{ form.email_address.errors }}
+            <div class="col-lg-4 col-md-6">
+              {{ form.email_address }}
+            </div>
+            {{ form.phone_numbers.errors }}
+            <div class="col-lg-4 col-md-6">
+              {{ form.phone_number }}
+              {% if form.errors %}
+              {% for field in form %}
+              {% for error in field.errors %}
+              <p> {{ error }} </p>
+              {% endfor %}
+              {% endfor %}
+              {% endif %}
+            </div>
+            {{ form.date_of_booking.errors }}
+            <div class="col-lg-4 col-md-6">
+              {{ form.date_of_booking }}
+            </div>
+            {{ form.time_of_booking.errors }}
+            <div class="col-lg-4 col-md-6">
+              {{ form.time_of_booking }}
+            </div>
+            {{ form.number_of_people.errors }}
+            <div class="col-lg-4 col-md-6">
+              {{ form.number_of_people }}
+            </div>
+          </div>
+          {{ form.special_requests.errors }}
+          <div class="form-group mt-3">
+            {{ form.special_requests }}
+          </div>
+          <div class="mb-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your
+              reservation. Thank you!</div>
+          </div>
+          <div class="text-center">
+            {% if messages %}
+              {% for message in messages %}
+              <ul>
+                <li>{{message}}</li>
+              </ul>
+              {% endfor %}
+              {% endif %}
+          </div>
+          <div class="text-center"><button type="submit">Edit Booking</button></div>
+        </form>
+      </div><!-- End Reservation Form -->
+
+    </div>
+
   </div>
-</div>
+</section><!-- End Edit Booking Section -->
+
 {%endblock%}
