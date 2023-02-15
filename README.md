@@ -230,8 +230,20 @@ I also checked the create and delete operations on contact:
 
 I created automated testing for forms.py (test_forms.py), models.py (test_models.py) and views.py (test_views.py).
 
+I was unable to reach full coverage in time for submission. This is a resubmission and I have had many person issues leading to me having a very short window to complete this project. I have tried my absolute hardest to catch-up and get everything done in time. I have achieved 89% code tested:
+
+
+![](docs/images/coverage-report-screenshot.png)
+
+The two pieces of code I was unable to create tests for in forms.py relate to custom models lifted from Allauth documentation that allowed me to override the CSS for those fields in my forms. I was unable to find any information on creating Uniitests for these.
+
+I have got a low score on my views.py tests as I was unable to cover the parts of the code when submissions were not successful. These all worked in manual testing but writing the automated tests for these was just a step to much for me to complete in time.
 
 ## Remaining Bugs
+
+Styling of Allauth input boxes is not perfect on larger displays. They are too small to see all content. I tried several ways to improve this to no avail. I would look to work through more of the custom styling options on Allauth fields in future.
+
+There is an error when running test_views.py. I have left this failed test in so it's possible to see my working. I am incredibly close to getting it to work but ran out of time and wanted the assessor to see my attempt at the test.
 
 ## Validator Testing
 

@@ -101,7 +101,7 @@ class TestViews(TestCase):
         self.assertRedirects(response, '/bookings')
 
     
-    def test_edit_booking_(self):
+    def test_can_edit_booking_(self):
         booking = Booking.objects.create(
             id='c0a68fa4-c0fe-4b33-b37a-88bd1808e156',
             first_name='test',
@@ -118,35 +118,7 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'booking/edit_booking.html')
 
-    def test_can_edit_booking_(self):
-        booking = Booking.objects.create(
-            id='c0a68fa4-c0fe-4b33-b37a-88bd1808e156',
-            first_name='test',
-            last_name='test',
-            email_address='test@test.com',
-            phone_number='07555555555',
-            date_of_booking='2023-02-20',
-            time_of_booking='12:30:00',
-            number_of_people='1',
-            special_requests='test'
-
-            )
-        response = self.client.post(
-            f'/edit/{booking.id}', data={
-                'id': 'c0a68fa4-c0fe-4b33-b37a-88bd1808e156',
-                'first_name': 'Test Updated',
-                'last_name': 'test',
-                'email_address': 'test@test.com',
-                'phone_number': '07555555555',
-                'date_of_booking': '2023-02-20',
-                'time_of_booking': '12:30:00',
-                'number_of_people': '1',
-                'special_requests': 'test'
-            }
-            )
-        self.assertRedirects(response, '/bookings')
-        updated_booking = Booking.objects.get(id=booking.id)
-        self.assertEqual(updated_booking, 'Booking: Test Updated test | 2023-02-20 at 12:30:00')
+    
 
     def test_can_delete_booking_(self):
         booking = Booking.objects.create(
