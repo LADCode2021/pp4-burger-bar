@@ -68,9 +68,21 @@ I completed all of these stories and then added further functionality. Staff als
 
 ![](docs/images/booking-guest-page-screenshot.png)
 
+### Manage Account Page when logged in
 
+![](docs/images/manage-account-page.png)
 
+### Admin Management Page when logged in as staff
 
+![](docs/images/admin-management-page-screenshot.png)
+
+### Manage All Bookings when logged in as staff
+
+![](docs/images/manage-all-bookings-page-screenshot.png)
+
+### Manage Contacts when logged in as staff with option to delete
+
+![](docs/images/manage-contacts-page-screenshot.png)
 
 ### Registration Page
 
@@ -84,7 +96,9 @@ I completed all of these stories and then added further functionality. Staff als
 
 ![](docs/images/log-out-page.png)
 
+### Footer on every page
 
+![](docs/images/footer-screenshot.png)
 
 ## Future Features
 
