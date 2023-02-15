@@ -123,7 +123,7 @@ I tried to create an account with existing email address and it raised an error 
 
 ## Validator Testing
 
-I validated the code in PEP8 and no errors were returned:
+I validated views.py, models.py and forms.py in Code Institute PEP8 Linter (https://pep8ci.herokuapp.com/) and no errors were returned.
 
 # Deployment
 

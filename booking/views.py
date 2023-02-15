@@ -164,7 +164,11 @@ def make_booking(request):
         form = BookingForm(request.POST)
         if form.is_valid():
             request.session['id'] = request.POST['id']
-            request.session['date_of_booking'] = request.POST['date_of_booking']
+            request.session[
+                'date_of_booking'
+                ] = request.POST[
+                    'date_of_booking'
+                    ]
             form.save()
             print('form saved')
             if request.user.is_authenticated:

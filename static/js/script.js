@@ -1,8 +1,5 @@
 /**
-* Template Name: Yummy - v1.3.0
-* Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
+* All JS adapted from: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
 */
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
