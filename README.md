@@ -141,6 +141,10 @@ I used the following technologies:
 
 # Credits
 
+* Image credits in image alt text
+
+* Some HTML, CSS and JS adapted from: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/.
+
 * Code Institute lesson content adapted in some areas - inline comments in code show where.
 
 

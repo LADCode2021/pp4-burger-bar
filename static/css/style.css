@@ -1,8 +1,5 @@
 /**
-* Template Name: Yummy - v1.3.0
-* Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
+* All CSS adapted from: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
 */
 
 /*--------------------------------------------------------------
@@ -459,7 +456,7 @@ section {
     left: 100%;
     visibility: visible;
   }
-} 
+}
 
 @media (min-width: 1280px) and (max-width: 1366px) {
   .navbar .dropdown .dropdown ul {
@@ -597,7 +594,7 @@ section {
   # About Section
   --------------------------------------------------------------*/
 
-  .about .about-img {
+.about .about-img {
   min-height: 500px;
 }
 
@@ -986,47 +983,6 @@ section {
 
   100% {
     transform: rotate(360deg);
-  }
-}
-
-/*--------------------------------------------------------------
-  # Gallery Section
-  --------------------------------------------------------------*/
-.gallery {
-  overflow: hidden;
-}
-
-.gallery .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.gallery .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: #d1d1d7;
-  opacity: 1;
-}
-
-.gallery .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--color-primary);
-}
-
-.gallery .swiper-slide-active {
-  text-align: center;
-}
-
-@media (min-width: 992px) {
-  .gallery .swiper-wrapper {
-    padding: 40px 0;
-  }
-
-  .gallery .swiper-slide-active {
-    border: 6px solid var(--color-primary);
-    padding: 4px;
-    background: #fff;
-    z-index: 1;
-    transform: scale(1.2);
   }
 }
 
