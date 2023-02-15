@@ -13,6 +13,20 @@
         <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
     </div>
     <div class="row g-0">
+      {% if form.errors %}
+      {% for field in form %}
+      {% for error in field.errors %}
+      <div class="alert alert-error">
+        <strong>{{ error|escape }}</strong>
+      </div>
+      {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+      <div class="alert alert-error">
+        <strong>{{ error|escape }}</strong>
+      </div>
+      {% endfor %}
+      {% endif %}
       <div class="d-flex align-items-center justify-content-center reservation-form-bg">
         <form method="POST" action="{% url 'account_login' %}" class="login make-booking-form" data-aos="fade-up"
           data-aos-delay="100">

@@ -9,6 +9,8 @@ In terms of functionality users can make a booking (create element of CRUD), see
 
 [The live project can be viewed here.](https://pp4-burger-bar.herokuapp.com/)
 
+(IMPORTANT: If creating booking as guest and then wanting to create account to edit/delete booking - you must use the same email address you used to submit the booking!)
+
 ![](docs/images/amiresponsive-screenshot.png)
 
 # Planning
@@ -27,6 +29,8 @@ Please see my initial user stories:
 
 
 I completed all of these stories and then added further functionality. Staff also have a management page to view all bookings and contacts. A normal user also has the ability to manage their account by changing email and password.
+
+![](docs/images/user-stories-done-screenshot.png)
 
 # Features
 
@@ -102,6 +106,9 @@ I completed all of these stories and then added further functionality. Staff als
 
 ## Future Features
 
+* Takeaway ordering/payment system
+* Functionality to see previously booked dates and times
+
 # Custom Models
 
 ## BookingForm Model
@@ -124,6 +131,7 @@ I created a custom model for my ContactForm:
 
 I went through the whole navigation menu and all links worked. However, I have two nav snippets. One for index.html which anchors and stays on the homepage to all sections except making a booking. And another nav snippet for all other pages that takes the user back to anchored sections of the homepage accept for contact which takes the user to a dedicated contact page. The Contact link in the index.html nav was taking the user to the dedicated contact page. I noticed I had incorrectly put the url for the index nav in the if else statement in base.html. Once I updated this is worked.
 
+I checked inline links on all pages and they all went to the correct destinations.
 
 ### Booking Form Tests
 
@@ -184,12 +192,62 @@ I tested whether the field would allow me to enter an incorrect email. It didn't
 
 I tried to create an account with existing email address and it raised an error telling me a user with that name already exists.
 
+### Login Form Tests
+
+When testing Booking Form on deployed project it submitted and logged in.
+
+
+* Test empty values in all fields
+
+I tested all fields individually as empty fields and all fields raised an error asking the user to fill in the field.
+
+* Test valid email address
+
+I tested whether the field would allow me to enter an incorrect email. It didn't let me and asked me please enter '@' in an email address.
+
+* Test incorrect password
+
+I tried to login with incorrect password and it refreshed the page and removed items from the form. So it was successful in that it didn't let me login in with incorrect details but not give me error messages to say why. I had a similar issue with my own forms and was able to rectify this in my view as described above. I found a solution on stack overflow and added this solution to the form:
+
+![](docs/images/login-error-message-screenshot.png)
+
+## CRUD Operation Tests
+
+As my final manual test I checked:
+
+* I was able to create bookings and that worked successfully and displayed error messages if any inputs were wrong.
+* I was redirected to a page where I was able to read my booking as a guest and when I was logged in it redirected to a page where I could read all of my bookings.
+* I was able to update bookings when logged in which worked successfully. I was not able to update booking if I was logged out which worked successfully.
+* I was able to delete bookings when logged in which worked successfully. I was noy able to delete booking if I was not logged in.
+* I was also able to read, edit and delete all bookings when logged in as staff.
+
+I also checked the create and delete operations on contact:
+
+* I was able to create new contacts and displayed error messages if any inputs were wrong.
+* I was able to delete these contacts from the front-end when I was logged in as staff
+
+## Automated Testing
+
+I created automated testing for forms.py (test_forms.py), models.py (test_models.py) and views.py (test_views.py).
+
 
 ## Remaining Bugs
 
 ## Validator Testing
 
 I validated views.py, models.py and forms.py in Code Institute PEP8 Linter (https://pep8ci.herokuapp.com/) and no errors were returned.
+
+### forms.py Test
+
+![](docs/images/forms-pep8-test-screenshot.png)
+
+### models.py Test
+
+![](docs/images/models-pep8-screenshot.png)
+
+### views.py Test
+
+![](docs/images/views-pep8-test-screenshot.png)
 
 # Deployment
 
@@ -269,6 +327,29 @@ I used the following technologies:
 * Django
 * Heroku
 * Cloudinary
+
+# Packages/Libraries used
+
+* asgiref==3.5.2
+* backports.zoneinfo==0.2.1
+* cloudinary==1.29.0
+* coverage==6.4.4
+* dj-database-url==1.0.0
+* dj3-cloudinary-storage==0.0.6
+* Django==3.2.15
+* django-allauth==0.51.0
+* django-s3-sqlite==0.0.5
+* gunicorn==20.1.0
+* oauthlib==3.2.1
+* psycopg2-binary==2.9.3
+* PyJWT==2.5.0
+* pylint-django==2.5.3
+* pylint-plugin-utils==0.7
+* python3-openid==3.2.0
+* pytz==2022.2.1
+* requests-oauthlib==1.3.1
+* sqlparse==0.4.2
+* types-cryptography==3.3.23
 
 # Credits
 
